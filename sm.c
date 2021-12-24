@@ -54,7 +54,7 @@ st_t state_take_free_drink(struct sm_data *sm) {
 }
 
 st_t state_buy_drink(struct sm_data *sm) {
-   printf("man[%d]: buying free drink...\n", sm->id);
+   printf("man[%d]: buying drink...\n", sm->id);
    sleep(1);
    sm->next_state = ST_END;
 }
@@ -79,14 +79,15 @@ void run_st(struct sm_data *sm) {
 
 int main(void) {
    free_drink_left = MAX_FREE_DRINK;
-   printf("--- state machine start ---\n");
+   printf("--- start ---\n");
    for (int i = 0; i < MAX_PEOPLE; i++) {
       struct sm_data sm;
       memset(&sm, 0, sizeof(sm));
       sm.id = i + 1;
       sm.next_state = ST_START;
+      // Launch state machine
       run_st(&sm);
    }
-   printf("--- state machine stop ---\n");
+   printf("--- stop ---\n");
    return 0;
 }
